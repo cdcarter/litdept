@@ -7,7 +7,10 @@ ActiveAdmin.register Playwright do
 	filter :local
 	filter :relationship
 
-	index do               
+	config.sort_order = "name_asc"
+
+	index do      
+		selectable_column         
     column :name do |playwright|
       link_to playwright.name, playwright_path(playwright)
     end
