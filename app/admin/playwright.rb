@@ -19,5 +19,52 @@ ActiveAdmin.register Playwright do
     column :relationship           
     column :representation             
     default_actions                   
-  end              
+  end        
+
+  show do |pw|
+  	attributes_table do
+  		row :name
+  		row :email
+  		row :representation
+  		row :city
+  		row :state
+  		row :local
+  		row :relationship
+  		row :contact
+  		row :agent_contact
+  	end
+
+  	panel "Scripts" do
+  		table_for(pw.scripts) do
+  			column :title do |script|
+  				link_to script.title, script_path(script)
+  			end
+  			column :year
+  			column :males
+  			column :females
+  			column :other
+  			column :link
+  		end
+  		
+  		b(link_to("New Script", new_script_path))
+  	end
+
+
+  	active_admin_comments
+ 	end  
+
+ 	form do |f|
+ 		f.inputs "Playwright" do
+ 			f.input :name
+ 			f.input :email
+ 			f.input :representation
+ 			f.input :city
+ 			f.input :state
+ 			f.input :local
+ 			f.input :relationship
+ 			f.input :contact, :input_html => { :rows => 4 } 
+ 			f.input :agent_contact, :input_html => { :rows => 4 } 
+ 		end
+ 		f.actions
+ 	end    
 end
