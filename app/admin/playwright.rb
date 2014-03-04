@@ -9,7 +9,7 @@ ActiveAdmin.register Playwright do
 
 	index do               
     column :name do |playwright|
-      link_to playwright.name, admin_playwright_path(playwright)
+      link_to playwright.name, playwright_path(playwright)
     end
     column :email                     
     column :local
