@@ -1,4 +1,6 @@
 ActiveAdmin.register AdminUser, :as => "Reader" do     
+  menu priority: 3
+
   index do               
     column :real_name
     column :title             
