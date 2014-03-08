@@ -15,6 +15,19 @@ ActiveAdmin.register Script do
 
 	config.sort_order = "title_asc"
 
+	member_action :download, :method => :get do
+		script = Script.find(params[:id])
+		if script.link?
+			redirect_to script.link.to_s
+		else
+			raise ActionController::RoutingError.new('Not Found')
+		end
+	end
+
+	action_item :only => :show do |s|
+    link_to('Download', download_script_path(resource)) if resource.link?
+  end
+
 
 	index do 
 		selectable_column
@@ -29,7 +42,9 @@ ActiveAdmin.register Script do
 		column :females
 		column :other
 		column :must_read
-		default_actions
+		actions do |s|
+			link_to "Download", download_script_path(s) if s.link?
+		end
 	end
 
 	 show do |script|
@@ -47,12 +62,14 @@ ActiveAdmin.register Script do
   		row :sent_by
   		row :requested_by
   		row :rights_holder
-
+  		row :script do |s|
+  			a("Download Script", :href => s.link) if s.link?
+  		end
   	end
 
   	active_admin_comments
   end
- 	form do |f|
+	form(:html => { :multipart => true }) do |f|
  		f.inputs "Script" do
  			f.input :title
  			f.input :playwright
@@ -64,8 +81,11 @@ ActiveAdmin.register Script do
  			f.input :sent_by
  			f.input :requested_by
  			f.input :rights_holder
+ 			f.input :link, :as => :file 
+ 			f.input :remove_link, :as => :boolean if f.object.link?
+ 			f.input :link_cache, :as => :hidden
  		end
+
  		f.actions
  	end    
-
 end

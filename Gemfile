@@ -45,3 +45,5 @@ gem 'jquery-rails'
 
 gem "activeadmin", github: "gregbell/active_admin"
 gem "meta_search"
+
+gem 'carrierwave_direct'

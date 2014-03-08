@@ -37,4 +37,17 @@ Litdept::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   I18n.enforce_available_locales = false
+
+  CarrierWave.configure do |cfg|
+    cfg.fog_credentials = {
+      :provider               => 'AWS',       # required
+      :aws_access_key_id      => 'AKIAIFIGHSMQWWI4BEIA',       # required
+      :aws_secret_access_key  => '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',       # required
+      :region                 => 'us-west-2'  # optional, defaults to 'us-east-1'
+    }
+    cfg.fog_directory  = 'srtscripts' # required
+    # see https://github.com/jnicklas/carrierwave#using-amazon-s3
+    # for more optional configuration
+  end
+
 end
