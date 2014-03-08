@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140304005450) do
+ActiveRecord::Schema.define(:version => 20140308004737) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -63,6 +63,15 @@ ActiveRecord::Schema.define(:version => 20140304005450) do
     t.text     "contact"
   end
 
+  create_table "reviews", :force => true do |t|
+    t.integer  "script_id"
+    t.string   "link"
+    t.integer  "reader_id"
+    t.string   "recommendation"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "scripts", :force => true do |t|
     t.string   "title"
     t.string   "year"
@@ -72,12 +81,16 @@ ActiveRecord::Schema.define(:version => 20140304005450) do
     t.integer  "other"
     t.string   "link"
     t.string   "sent_to"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.string   "requested_by"
     t.string   "sent_by"
     t.string   "rights_holder"
     t.boolean  "must_read"
+    t.string   "script_file_name"
+    t.string   "script_content_type"
+    t.integer  "script_file_size"
+    t.datetime "script_updated_at"
   end
 
 end
