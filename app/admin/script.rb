@@ -62,9 +62,6 @@ ActiveAdmin.register Script do
   		row :sent_by
   		row :requested_by
   		row :rights_holder
-  		row :script do |s|
-  			a("Download Script", :href => s.link) if s.link?
-  		end
   	end
 
   	active_admin_comments
