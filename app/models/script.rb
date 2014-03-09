@@ -4,5 +4,7 @@ class Script < ActiveRecord::Base
 
   belongs_to :playwright
 
+  has_many :reviews
+
   mount_uploader :link, ScriptDocUploader
 end
