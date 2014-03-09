@@ -65,5 +65,15 @@ Litdept::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   config.assets.precompile += ['active_admin.css', 'active_admin/print.css', 'active_admin.js']
-
+  CarrierWave.configure do |cfg|
+    cfg.fog_credentials = {
+      :provider               => 'AWS',       # required
+      :aws_access_key_id      => 'AKIAIFIGHSMQWWI4BEIA',       # required
+      :aws_secret_access_key  => '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',       # required
+      :region                 => 'us-west-2'  # optional, defaults to 'us-east-1'
+    }
+    cfg.fog_directory  = 'srtscripts' # required
+    # see https://github.com/jnicklas/carrierwave#using-amazon-s3
+    # for more optional configuration
+  end
 end
