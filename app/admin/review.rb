@@ -1,5 +1,7 @@
 ActiveAdmin.register Review do
 	menu priority:  3
+	
+	config.comments = false
   
 	member_action :download, :method => :get do
 		review = Review.find(params[:id])
