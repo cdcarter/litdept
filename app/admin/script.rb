@@ -25,6 +25,10 @@ ActiveAdmin.register Script do
 	end
 
 	action_item :only => :show do |s|
+		link_to "New Review", new_script_review_path(resource)
+	end
+
+	action_item :only => :show do |s|
     link_to('Download', download_script_path(resource)) if resource.link?
   end
 
@@ -62,6 +66,28 @@ ActiveAdmin.register Script do
   		row :sent_by
   		row :requested_by
   		row :rights_holder
+  	end
+
+  	panel "Script Reviews" do
+  		table_for script.reviews do
+  			column :reader do |r|
+  				r.reader.real_name
+  			end
+  			column :title do |r|
+  				r.reader.title
+  			end
+  			column :recommendation
+  			column :actions do |r|
+  				links = ''.html_safe
+					links << link_to("Edit", edit_script_review_path(r))
+					links << " "
+					links << link_to("Delete", script_review_path(r),
+              method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')})
+					links << " "
+					links << link_to("Download", download_script_review_path(r)) if r.link?
+					links
+  			end
+  		end
   	end
 
   	active_admin_comments
