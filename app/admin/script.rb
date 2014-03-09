@@ -79,7 +79,7 @@ ActiveAdmin.register Script do
  			f.input :requested_by
  			f.input :rights_holder
  			f.input :link, :as => :file 
- 			f.input :remove_link, :as => :boolean if f.object.link?
+ 			f.input :remove_link, :as => :boolean, :label => "Remove attached script" if f.object.link?
  			f.input :link_cache, :as => :hidden
  		end
 
