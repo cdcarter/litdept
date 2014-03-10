@@ -23,7 +23,7 @@ ActiveAdmin.register Review do
   	end 
 	end 
 
-	show do
+	show :title => proc {resource.script.title + " - " + resource.script.playwright.name } do
 		attributes_table do
 			row :script do |r|
 				link_to r.script.title, script_path(r.script)
@@ -54,6 +54,8 @@ ActiveAdmin.register Review do
 
 		actions :defaults => false do |r|
 			links = ''.html_safe
+			links << link_to("View", review_path(r))
+			links << " "
 			links << link_to("Edit", edit_review_path(r))
 			links << " "
 			links << link_to("Delete", review_path(r),

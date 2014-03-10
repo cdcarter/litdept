@@ -95,6 +95,8 @@ ActiveAdmin.register Script do
   			column :recommendation
   			column :actions do |r|
   				links = ''.html_safe
+  			 	links << link_to("View", review_path(r))
+					links << " "
 					links << link_to("Edit", edit_review_path(r))
 					links << " "
 					links << link_to("Delete", review_path(r),
