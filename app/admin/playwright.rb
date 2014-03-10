@@ -51,7 +51,7 @@ ActiveAdmin.register Playwright do
         end
   		end
   		
-  		b(link_to("New Script", new_script_path))
+  		b(link_to("New Script", new_script_path(:id => pw.id)))
   	end
 
 

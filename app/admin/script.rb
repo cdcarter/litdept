@@ -120,11 +120,22 @@ ActiveAdmin.register Script do
  			f.input :sent_by
  			f.input :requested_by
  			f.input :rights_holder
- 			f.input :link, :as => :file 
+ 			f.input :link, :as => :file, :label => "Script Attachment"
  			f.input :remove_link, :as => :boolean, :label => "Remove attached script" if f.object.link?
  			f.input :link_cache, :as => :hidden
  		end
 
  		f.actions
  	end    
+
+ 	controller do
+ 		def new
+ 			@script = Script.new
+ 			if params[:id]
+ 				@script.playwright_id = params[:id]
+ 			end
+ 			render "active_admin/resource/new"
+ 		end
+ 	end
+
 end
