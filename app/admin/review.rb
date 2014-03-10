@@ -16,6 +16,13 @@ ActiveAdmin.register Review do
     link_to('Download', download_review_path(resource)) if resource.link?
   end
 
+	controller do
+  	def create
+    	params[:review][:reader_id] = current_admin_user.id
+    	create!
+  	end 
+	end 
+
   index do 
 		selectable_column
 
@@ -54,5 +61,4 @@ ActiveAdmin.register Review do
 
  		f.actions
  	end
-
 end
