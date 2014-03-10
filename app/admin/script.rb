@@ -4,9 +4,9 @@ ActiveAdmin.register Script do
 	filter :title
 	filter :playwright_name, :as => :string
 	filter :year
-	filter :males
-	filter :females
-	filter :other
+	filter :males, :as => :numeric_range
+	filter :females, :as => :numeric_range
+	filter :other, :as => :numeric_range
 	filter :must_read
 	filter :sent_to
 	filter :sent_by

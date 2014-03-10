@@ -12,6 +12,7 @@
 @import "active_admin/base";
 @import "chosen";
 @import "active_admin/chosen";
+@import "active_admin/numeric_range";
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
