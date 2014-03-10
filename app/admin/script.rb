@@ -111,7 +111,7 @@ ActiveAdmin.register Script do
 	form(:html => { :multipart => true }) do |f|
  		f.inputs "Script" do
  			f.input :title
- 			f.input :playwright
+ 			f.input :playwright, :input_html_options => { :class => 'chosen' }
  			f.input :males
  			f.input :females
  			f.input :other
