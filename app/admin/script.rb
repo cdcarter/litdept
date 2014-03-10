@@ -24,8 +24,24 @@ ActiveAdmin.register Script do
 		end
 	end
 
+	member_action :review, :method => :get do
+		@review = Review.new
+		@review.script_id = params[:id]
+		@review.reader = current_admin_user
+		@page_title = "New Review"
+		@action = save_review_script_path(params[:id])
+		render "scripts/new_review"
+	end
+
+	member_action :save_review, :method => :post do
+		@review = Review.new(params[:review])
+		@review.reader = current_admin_user
+		@review.save
+		redirect_to review_path @review
+	end
+
 	action_item :only => :show do |s|
-		link_to "New Review", new_script_review_path(resource)
+		link_to "New Review", review_script_path(:id => resource)
 	end
 
 	action_item :only => :show do |s|
@@ -79,12 +95,12 @@ ActiveAdmin.register Script do
   			column :recommendation
   			column :actions do |r|
   				links = ''.html_safe
-					links << link_to("Edit", edit_script_review_path(r))
+					links << link_to("Edit", edit_review_path(r))
 					links << " "
-					links << link_to("Delete", script_review_path(r),
+					links << link_to("Delete", review_path(r),
               method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')})
 					links << " "
-					links << link_to("Download", download_script_review_path(r)) if r.link?
+					links << link_to("Download", download_review_path(r)) if r.link?
 					links
   			end
   		end

@@ -2,8 +2,6 @@ ActiveAdmin.register Review do
 	menu priority:  3
 	
 	config.comments = false
-
-	belongs_to :script
   
 	member_action :download, :method => :get do
 		review = Review.find(params[:id])
@@ -17,7 +15,7 @@ ActiveAdmin.register Review do
 	action_item :only => :show do |s|
     link_to('Download', download_review_path(resource)) if resource.link?
   end
-=begin
+
   index do 
 		selectable_column
 
@@ -44,11 +42,10 @@ ActiveAdmin.register Review do
 			links
 		end
 	end
-=end
+
 	form(:html => { :multipart => true }) do |f|
  		f.inputs "Script" do
  			f.input :script
- 			f.input :reader
  			f.input :recommendation
  		 	f.input :link, :as => :file 
  			f.input :remove_link, :as => :boolean, :label => "Remove attachment" if f.object.link?
