@@ -51,7 +51,7 @@ ActiveAdmin.register Script do
 
 	index do 
 		selectable_column
-		column :name do |script|
+		column :name, :sortable => :title do |script|
 			link_to script.title, script_path(script)
 		end
 		column :author do |script|

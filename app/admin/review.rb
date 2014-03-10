@@ -2,6 +2,7 @@ ActiveAdmin.register Review do
 	menu priority:  3
 	
 	config.comments = false
+	config.sort_order = "created_at_asc"
   
 	member_action :download, :method => :get do
 		review = Review.find(params[:id])
@@ -40,11 +41,11 @@ ActiveAdmin.register Review do
   index do 
 		selectable_column
 
-		column :title do |review|
+		column :title, :sortable => :title do |review|
 			link_to review.script.title, script_path(review.script)
 		end
 
-		column :reader do |review|
+		column :reader, :sortable => :reader do |review|
 			link_to review.reader.real_name, reader_path(review.reader)
 		end
 
