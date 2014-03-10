@@ -9,7 +9,36 @@ ActiveAdmin.register AdminUser, :as => "Reader" do
     column :last_sign_in_at           
     column :sign_in_count             
     default_actions                   
-  end                                 
+  end          
+
+  show do |u|
+    attributes_table do
+      row :real_name
+      row :title
+      row :email
+    end
+
+    panel "Reviews" do
+      table_for(u.reviews) do
+        column :title do |r|
+          link_to r.script.title, script_path(r.script)
+        end
+        column :recommendation
+        column :actions do |r|
+          links = ''.html_safe
+          links << link_to("Edit", edit_review_path(r))
+          links << " "
+          links << link_to("Delete", review_path(r),
+              method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')})
+          links << " "
+          links << link_to("Download", download_review_path(r)) if r.link?
+          links
+        end
+      end
+    end
+
+    active_admin_comments
+  end                       
 
   filter :email                       
 

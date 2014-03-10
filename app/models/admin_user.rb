@@ -9,4 +9,6 @@ class AdminUser < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me,
   	:real_name, :title, :inactive
   # attr_accessible :title, :body
+
+  has_many :reviews, :foreign_key => :reader_id
 end

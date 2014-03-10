@@ -23,6 +23,20 @@ ActiveAdmin.register Review do
   	end 
 	end 
 
+	show do
+		attributes_table do
+			row :script do |r|
+				link_to r.script.title, script_path(r.script)
+			end
+			row :reader do |r|
+				link_to r.reader.real_name, reader_path(r.reader)
+			end
+			row :recommendation
+		end
+
+		active_admin_comments
+	end
+
   index do 
 		selectable_column
 

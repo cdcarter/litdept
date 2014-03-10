@@ -87,7 +87,7 @@ ActiveAdmin.register Script do
   	panel "Script Reviews" do
   		table_for script.reviews do
   			column :reader do |r|
-  				r.reader.real_name
+  				link_to r.reader.real_name, reader_path(r.reader)
   			end
   			column :title do |r|
   				r.reader.title
