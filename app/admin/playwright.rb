@@ -46,7 +46,9 @@ ActiveAdmin.register Playwright do
   			column :males
   			column :females
   			column :other
-  			column :link
+  			column :script do |s|
+          link_to "Download", download_script_path(s) if s.link?
+        end
   		end
   		
   		b(link_to("New Script", new_script_path))
