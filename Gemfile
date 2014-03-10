@@ -48,3 +48,4 @@ gem "meta_search"
 
 gem 'carrierwave_direct'
 gem 'chosen-rails'
+gem 'rails_12factor', group: :production
