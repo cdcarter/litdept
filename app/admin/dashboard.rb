@@ -23,7 +23,7 @@ ActiveAdmin.register_page "Dashboard" do
 
       column do
         panel "Info" do
-          para "Welcome to the Seattle Repertory Theatre Literary Database. "
+          para "Welcome to the Northwest New Play Lab script review database. Leatherleaf Maple was developed in house by Christian Carter and Sara Keats to handle web-based reading and reviewing of scripts submitted and requested by a literary department. "
         end
       end
     end
