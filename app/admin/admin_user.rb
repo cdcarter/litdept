@@ -49,6 +49,7 @@ ActiveAdmin.register AdminUser, :as => "Reader" do
       f.input :password_confirmation  
       f.input :real_name
       f.input :title
+      f.input :active, :as => :boolean
     end                               
     f.actions                         
   end                                 
